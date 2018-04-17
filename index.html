@@ -156,6 +156,123 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-easymove碰撞锁定视角" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>//easymove gameobj锁定视角，双colider 单刚体</p>
+<p>using System.Collections;<br>using System.Collections.Generic;<br>using UnityEngine;</p>
+<p>public class easymove : MonoBehaviour {</p>
+<pre><code>float MoveSpeed=1.0f;
+
+
+Transform m_camTransform;
+Vector3 m_camRot;
+float m_camHeight=1.4f;
+
+
+public Transform m_transform;
+CharacterController m_ch;
+
+
+private Transform m_Transform;
+void Start () {
+    m_Transform = gameObject.GetComponent&lt;Transform&gt;();
+    m_transform = this.transform;
+    m_ch = this.GetComponent&lt;CharacterController&gt; ();
+
+
+    m_camTransform = Camera.main.transform;
+    m_camTransform.position = m_transform.TransformPoint (0, m_camHeight, 0);
+    m_camTransform.rotation = m_transform.rotation;
+    m_camRot = m_camTransform.eulerAngles;
+
+    Screen.lockCursor = true;
+}
+
+// Update is called once per frame
+void Update () {
+
+
+
+
+    float rh = Input.GetAxis (&quot;Mouse X&quot;);
+    float rv = Input.GetAxis (&quot;Mouse Y&quot;);
+
+    m_camRot.x -= rv;
+    m_camRot.y += rh;
+    m_camTransform.eulerAngles = m_camRot;
+
+    Vector3 camrot = m_camTransform.eulerAngles;
+    camrot.x = 0;camrot.z = 0;
+    m_transform.eulerAngles = camrot;
+
+    m_camTransform.position = m_transform.TransformPoint (0, m_camHeight, 0);
+
+
+
+
+
+
+
+
+    if(Input.GetKey(KeyCode.W)){
+        this.transform.Translate(Vector3.forward*Time.deltaTime*MoveSpeed);
+    }
+    if(Input.GetKey(KeyCode.A)){
+        this.transform.Translate(Vector3.left*Time.deltaTime*MoveSpeed);
+    }
+    if(Input.GetKey(KeyCode.S)){
+        this.transform.Translate(Vector3.back*Time.deltaTime*MoveSpeed);
+    }
+    if(Input.GetKey(KeyCode.D)){
+        this.transform.Translate(Vector3.right*Time.deltaTime*MoveSpeed);
+    }
+}
+</code></pre><p>}</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/04/16/easymove碰撞锁定视角/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="[layout]-fpage" class="article article-type-[layout]  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
